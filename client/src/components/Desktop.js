@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import DesktopIcon from './DesktopIcon';
 import DesktopColumn from './DesktopColumn';
 
 import axios from 'axios';
@@ -13,8 +12,8 @@ class Desktop extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            desktop: {}
-        };
+            desktop: false
+        }
     }
 
     async componentDidMount(){
@@ -30,7 +29,6 @@ class Desktop extends Component {
 
 
     render(){
-        console.log(11);
         return (
             <div>
                 {Array.from(Array(10).keys()).map((column) => {
