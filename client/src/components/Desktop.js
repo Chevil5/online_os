@@ -30,6 +30,7 @@ class Desktop extends Component {
 
 
     render(){
+        console.log(11);
         return (
             <div>
                 {Array.from(Array(10).keys()).map((column) => {
