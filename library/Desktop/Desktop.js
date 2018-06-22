@@ -17,6 +17,11 @@ class Desktop {
         });
         return await newUserDesktop.save();
     }
+
+    async uspdateIconNumber(userId, iconId, newNumber){
+        const DesktopModel = mongoose.model('Desktop');
+        return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {number: newNumber}, {new: true})
+    }
 }
 
 

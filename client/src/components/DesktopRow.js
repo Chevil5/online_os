@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
 import DesktopIcon from './DesktopIcon';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
+
 
 
 const rowTarget = {
     drop(props, monitor) {
-        console.log(props);
+        props.updateIconNumber(1, props.icon, props.number)
     }
 
 };
@@ -29,4 +33,7 @@ class DesktopRow extends Component{
 let ItemTypes = {
     ICON: 'icon'
 };
-export default DropTarget(ItemTypes.ICON, rowTarget, collect)(DesktopRow);
+function mapStateToProps({icon}) {
+    return {icon};
+}
+export default connect(mapStateToProps, actions)(DropTarget(ItemTypes.ICON, rowTarget, collect)(DesktopRow));

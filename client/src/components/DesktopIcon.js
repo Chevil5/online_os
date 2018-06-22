@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
+import * as actions from '../actions';
+import {connect} from "react-redux";
+
 
 const iconSource = {
     beginDrag(props) {
-        console.log(props);
-        return {
-            id: props.item._id
-        };
+        props.moveIconFrom(props.item._id);
+        return {};
     }
 };
 function collect(connect, monitor) {
@@ -34,6 +35,6 @@ class DesktopIcon extends Component {
 let ItemTypes = {
     ICON: 'icon'
 };
-export default DragSource(ItemTypes.ICON, iconSource, collect)(DesktopIcon);
+export default connect(null, actions)(DragSource(ItemTypes.ICON, iconSource, collect)(DesktopIcon));
 
 // export default DesktopIcon;
