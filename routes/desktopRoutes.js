@@ -10,7 +10,7 @@ module.exports = app => {
 
         let desktop = new Desktop();
 
-        desktop.uspdateIconNumber(user_id, icon_id, number);
+        let updated = await desktop.uspdateIconNumber(user_id, icon_id, number);
         const users_desktop = await desktop.getUserDesktop(user_id);
 
         res.send(users_desktop)

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import DesktopRow from './DesktopRow';
-import { connect } from 'react-redux';
 
 
 class DesktopColumn extends Component {
@@ -14,6 +13,7 @@ class DesktopColumn extends Component {
     }
 
     render(){
+        console.log('run');
         const desktop = this.props.desktop;
         const column = this.props.column;
 
@@ -23,7 +23,5 @@ class DesktopColumn extends Component {
         })}</div>)
     }
 }
-function mapStateToProps({desktop}) {
-    return {desktop};
-}
-export default connect(mapStateToProps)(DesktopColumn);
+
+export default DesktopColumn;
