@@ -13,7 +13,6 @@ class DesktopColumn extends Component {
     }
 
     render(){
-        console.log('run');
         const desktop = this.props.desktop;
         const column = this.props.column;
 

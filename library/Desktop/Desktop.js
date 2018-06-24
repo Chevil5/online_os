@@ -6,7 +6,7 @@ class Desktop {
         return await DesktopModel.find({ userId: user_id});
     }
 
-    async setUserDesktop(userId, link, image, name, number){
+    async setIconDesktop(userId, link, image, name, number){
         const DesktopModel = mongoose.model('Desktop');
         let newUserDesktop = new DesktopModel({
             userId,
@@ -16,6 +16,13 @@ class Desktop {
             number
         });
         return await newUserDesktop.save();
+    }
+
+    async deleteIconDesktop(userId, iconId){
+        const DesktopModel = mongoose.model('Desktop');
+        return await DesktopModel.find({ _id:iconId }).remove()
+
+
     }
 
     async uspdateIconNumber(userId, iconId, newNumber){

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import DesktopColumn from './DesktopColumn';
+import DesktopCreateIcon from './DesktopCreateIcon';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
-import Helper from '../helpers/Helper';
 
 
 
@@ -23,13 +23,17 @@ class Desktop extends Component {
     }
 
     onClick(){
-        Helper.closeAllContextMenus();
+        this.props.showContextMenu(false);
     }
 
-
     render(){
+        let notification = "";
+        if(this.props.adding_form && this.props.adding_form.status){
+            notification = <DesktopCreateIcon number={this.props.adding_form.number}/>
+        }
         return (
             <div onClick={this.onClick}>
+                {notification}
                 {Array.from(Array(10).keys()).map((column) => {
                     return (<DesktopColumn desktop={this.props.desktop} key={column+"column"} column={column} className="column" style={{width:"100px", float:"left"}}/>);
                 })}
@@ -37,7 +41,7 @@ class Desktop extends Component {
         );
     }
 }
-function mapStateToProps({desktop}) {
-    return {desktop};
+function mapStateToProps({desktop, adding_form}) {
+    return {desktop, adding_form};
 }
 export default connect(mapStateToProps, actions)(DragDropContext(HTML5Backend)(Desktop));
