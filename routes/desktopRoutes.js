@@ -19,7 +19,7 @@ module.exports = app => {
     app.post('/desktop/icon/add', async (req,res) => {
         let desktop = new Desktop();
 
-        let saved = await desktop.setIconDesktop(req.query.user_id, req.query.icon, "", req.query.icon, req.query.number);
+        let saved = await desktop.setIconDesktop(req.query.user_id, req.query.icon, "https://www.google.com.ua/images/branding/product/ico/googleg_lodp.ico", req.query.icon, req.query.number);
         const users_desktop = await desktop.getUserDesktop(req.query.user_id);
         res.send(users_desktop);
     });
@@ -37,7 +37,7 @@ module.exports = app => {
         let desktop = new Desktop();
         const users_desktop = await desktop.getUserDesktop(req.query.userId);
         if(users_desktop == false){
-            let saved = await desktop.setIconDesktop(req.query.userId,"google.com", "", "Google", 1);
+            let saved = await desktop.setIconDesktop(req.query.userId,"google.com", "https://www.google.com.ua/images/branding/product/ico/googleg_lodp.ico", "Google", 1);
             res.send(saved);
         } else {
             res.send(users_desktop);

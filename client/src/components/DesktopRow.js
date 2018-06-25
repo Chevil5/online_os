@@ -46,7 +46,7 @@ class DesktopRow extends Component{
         if(this.props.context_menu && this.props.context_menu === this.props.number){
             contextMenu = <DesktopContextMenu number={this.props.number} item={this.props.item?this.props.item:false}/>;
         }
-        return connectDropTarget(<div onContextMenu={event => {this.onRightClick(event)}} key={this.props.number +"row"} className="row" id={"row"+this.props.number} style={{width:"100%", float:"left", height:"100px", border: "1px solid black", position: "relative"}}>{this.props.item?this.renderDesktopItem(this.props.item):this.props.item}{isOver}{contextMenu}</div>)
+        return connectDropTarget(<div onContextMenu={event => {this.onRightClick(event)}} key={this.props.number +"row"} className="DesktopRow" id={"row"+this.props.number}>{this.props.item?this.renderDesktopItem(this.props.item):this.props.item}{isOver}{contextMenu}</div>)
     }
 }
 

@@ -13,7 +13,7 @@ class DesktopCreateIcon extends Component {
         this.props.showAddingForm(false, false);
     }
     render(){
-        return (<div>
+        return (<div className="DesktopCreateIcon">
             <input placeholder="Enter URL" type='text' id="desktop_create_icon" ref={input => {this.icon_url = input;}}/>
             <button onClick={this.createIcon}>Add</button>
         </div>);

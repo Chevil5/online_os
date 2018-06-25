@@ -1,0 +1,58 @@
+.Desktop {
+    float: left;
+    background-image: url(/images/desktop.jpg);
+    background-size: cover;
+    width: 100%;
+    overflow: hidden;
+}
+
+.DesktopColumn {
+    width:5%;
+    float:left
+}
+
+.DesktopRow {
+    width:100%;
+    float:left;
+    height:90px;
+    /*border: 1px solid black;*/
+    position: relative;
+    text-align: center;
+}
+
+.DesktopContextMenu {
+    width: 100%;
+    position: absolute;
+    right: -75px;
+    top: 0;
+    background: #444242;
+    padding: 10px 10px 0 10px;
+    z-index: 2;
+    color: white;
+}
+
+.DesktopContextMenu p {
+    margin: 0;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #696666;
+}
+
+.DesktopContextMenu p:hover {
+    background: black;
+    border-bottom: 2px solid black;
+}
+
+.DesktopCreateIcon {
+    position: absolute;
+    top: 50%;
+    left: 42%;
+    background: white;
+    padding: 40px;
+    text-align: center;
+    z-index: 99;
+}
+
+.DesktopCreateIcon input {
+    display: block;
+    margin-bottom: 10px;
+}

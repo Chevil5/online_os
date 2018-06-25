@@ -16,9 +16,9 @@ class DesktopColumn extends Component {
         const desktop = this.props.desktop;
         const column = this.props.column;
 
-        return (<div key={column+"column"} className="column" style={{width:"100px", float:"left"}}>{Array.from(Array(10).keys()).map(row => {
+        return (<div key={column+"column"} className="DesktopColumn">{Array.from(Array(7).keys()).map(row => {
             let row_number = row + (column*10);
-            return (<DesktopRow key={row_number +"row"} className="row" number={row_number} item={desktop?this.getDesktopItemByNumber(desktop, row_number):false}/>)
+            return (<DesktopRow key={row_number +"row"} number={row_number} item={desktop?this.getDesktopItemByNumber(desktop, row_number):false}/>)
         })}</div>)
     }
 }

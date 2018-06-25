@@ -18,16 +18,22 @@ function collect(connect, monitor) {
 }
 
 class DesktopIcon extends Component {
-
+    constructor(props) {
+        super(props);
+        this.openLink = this.openLink.bind(this);
+    }
+    openLink(){
+        console.log(111);
+        window.open("https://"+this.props.item.link);
+    }
     render(){
         const { connectDragSource, isDragging } = this.props;
 
-        return connectDragSource(<div style={{
+        return connectDragSource(<div className="DesktopIcon" onDoubleClick={this.openLink} style={{
             opacity: isDragging ? 0.5 : 1,
-            fontSize: 25,
-            fontWeight: 'bold',
             cursor: 'move'
         }}>
+            <img src={this.props.item.image}/>
             <span id={this.props.item._id}>{this.props.item.name}</span>
         </div>);
     }

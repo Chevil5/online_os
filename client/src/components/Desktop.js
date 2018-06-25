@@ -32,10 +32,10 @@ class Desktop extends Component {
             notification = <DesktopCreateIcon number={this.props.adding_form.number}/>
         }
         return (
-            <div onClick={this.onClick}>
+            <div onClick={this.onClick} className="Desktop">
                 {notification}
-                {Array.from(Array(10).keys()).map((column) => {
-                    return (<DesktopColumn desktop={this.props.desktop} key={column+"column"} column={column} className="column" style={{width:"100px", float:"left"}}/>);
+                {Array.from(Array(20).keys()).map((column) => {
+                    return (<DesktopColumn desktop={this.props.desktop} key={column+"column"} column={column}/>);
                 })}
             </div>
         );
