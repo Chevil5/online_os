@@ -42,7 +42,7 @@
     border-bottom: 2px solid black;
 }
 
-.DesktopCreateIcon {
+.DesktopCreateIcon, .DesktopEditIcon {
     position: absolute;
     top: 50%;
     left: 42%;
@@ -52,7 +52,7 @@
     z-index: 99;
 }
 
-.DesktopCreateIcon input {
+.DesktopCreateIcon input, .DesktopEditIcon input {
     display: block;
     margin-bottom: 10px;
 }

@@ -32,7 +32,7 @@ class DesktopIcon extends Component {
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move'
         }}>
-            <img src={this.props.item.image}/>
+            <img alt="" src={this.props.item.image}/>
             <span id={this.props.item._id}>{this.props.item.name}</span>
         </div>);
     }

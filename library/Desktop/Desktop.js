@@ -25,6 +25,11 @@ class Desktop {
 
     }
 
+    async editIconDesktop(userId, iconId, name, link){
+        const DesktopModel = mongoose.model('Desktop');
+        return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {name, link}, {new: true})
+    }
+
     async uspdateIconNumber(userId, iconId, newNumber){
         const DesktopModel = mongoose.model('Desktop');
         return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {number: newNumber}, {new: true})

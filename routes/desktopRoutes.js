@@ -18,6 +18,20 @@ module.exports = app => {
         res.send(users_desktop)
     });
 
+    app.post('/desktop/icon/edit', async (req,res) => {
+        const user_id = req.query.user_id;
+        const _id = req.query.id;
+        const name = req.query.name;
+        const link = req.query.link;
+
+        let desktop = new Desktop();
+
+        let updated = await desktop.editIconDesktop(user_id, _id, name, link);
+        const users_desktop = await desktop.getUserDesktop(user_id);
+
+        res.send(users_desktop)
+    });
+
     app.post('/desktop/icon/add', async (req,res) => {
         let desktop = new Desktop();
 

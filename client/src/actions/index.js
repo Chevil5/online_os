@@ -19,13 +19,21 @@ export const createIcon = (user_id, icon, number) => async dispatch => {
     const res = await axios.post('/desktop/icon/add?user_id='+user_id + '&icon='+icon+'&number='+number);
     dispatch({type: types.FETCH_DESKTOP, payload: res.data});
 };
+export const editIcon = (user_id, item) => async dispatch => {
+    const res = await axios.post('/desktop/icon/edit?user_id='+user_id + '&id='+item._id+'&name='+item.name + '&link='+item.link);
+    dispatch({type: types.FETCH_DESKTOP, payload: res.data});
+};
 export const deleteIcon = (user_id, icon_id) => async dispatch => {
     const res = await axios.post('/desktop/icon/delete?user_id='+user_id + '&icon_id='+icon_id);
     dispatch({type: types.FETCH_DESKTOP, payload: res.data});
 };
 
-export const showAddingForm = (status, number) => dispatch => {
-    dispatch({type: types.SHOW_ADDING_FORM, payload: {status, number}})
+export const showAddingForm = (status, info) => dispatch => {
+    dispatch({type: types.SHOW_ADDING_FORM, payload: {status, info}})
+};
+
+export const showEditingForm = (status, info) => dispatch => {
+    dispatch({type: types.SHOW_EDITING_FORM, payload: {status, info}})
 };
 export const showContextMenu = (number) => dispatch => {
     dispatch({type: types.SHOW_CONTEXT_MENU, payload: number})
