@@ -23,8 +23,7 @@ class DesktopIcon extends Component {
         this.openLink = this.openLink.bind(this);
     }
     openLink(){
-        console.log(111);
-        window.open("https://"+this.props.item.link);
+        window.open(this.props.item.link);
     }
     render(){
         const { connectDragSource, isDragging } = this.props;

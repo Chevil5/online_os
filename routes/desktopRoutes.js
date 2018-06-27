@@ -1,4 +1,6 @@
 const Desktop = require('../library/Desktop/Desktop');
+const axios = require("axios");
+const cheerio = require("cheerio");
 
 module.exports = app => {
 
@@ -19,9 +21,23 @@ module.exports = app => {
     app.post('/desktop/icon/add', async (req,res) => {
         let desktop = new Desktop();
 
-        let saved = await desktop.setIconDesktop(req.query.user_id, req.query.icon, "https://www.google.com.ua/images/branding/product/ico/googleg_lodp.ico", req.query.icon, req.query.number);
+        let site_link = req.query.icon;
+        // const site_link = "https://www.google.com";
+
+        if (site_link.toString().indexOf("https") !== 0 && site_link.toString().indexOf("http") !== 0) {
+            site_link = "https://"+site_link;
+        }
+
+        const site_html = await axios.get(site_link);
+        let $ = cheerio.load(site_html.data);
+
+        const site_title = $('head title').text();
+        const site_icon = site_link+"/favicon.ico";
+
+        let saved = await desktop.setIconDesktop(req.query.user_id, site_link, site_icon, site_title, req.query.number);
         const users_desktop = await desktop.getUserDesktop(req.query.user_id);
         res.send(users_desktop);
+
     });
 
     app.post('/desktop/icon/delete', async (req,res) => {
