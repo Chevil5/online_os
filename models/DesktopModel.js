@@ -11,7 +11,9 @@ const desktopSchema = mongoose.Schema({
     link: String,
     image: String,
     name: String,
-    number: Number
+    number: Number,
+    type: Number,
+    dir_id: String
 });
 
 mongoose.model('Desktop', desktopSchema);

@@ -13,8 +13,9 @@ class DesktopContextMenu extends Component {
         this.deleteIcon = this.deleteIcon.bind(this);
     }
 
-    showAddingForm(){
-        this.props.showAddingForm(true, {value: this.props.number, type: 'adding_form'});
+    showAddingForm(icon_type){
+        console.log(icon_type);
+        this.props.showAddingForm(true, {number: this.props.number, dir_id: this.props.dir_id, icon_type: icon_type, type: 'adding_form'});
     }
 
     showEditingForm(){
@@ -33,7 +34,10 @@ class DesktopContextMenu extends Component {
     };
 
     renderMenuForRow(){
-        return <div className="DesktopContextMenu"><p onClick={this.showAddingForm}>Add icon</p></div>;
+        return <div className="DesktopContextMenu">
+            <p onClick={ () => { this.showAddingForm(0)} }>Add icon</p>
+            <p onClick={ () => { this.showAddingForm(1)} }>Add directory</p>
+        </div>;
     };
 
     render() {

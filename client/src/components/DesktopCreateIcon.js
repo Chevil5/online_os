@@ -9,7 +9,7 @@ class DesktopCreateIcon extends Component {
         this.createIcon = this.createIcon.bind(this);
     }
     createIcon(){
-        this.props.createIcon(1, this.icon_url.value, this.props.number);
+        this.props.createIcon(1, this.icon_url.value, this.props.info.number,this.props.info.dir_id,this.props.info.icon_type);
         this.props.showAddingForm(false, false);
     }
     render(){

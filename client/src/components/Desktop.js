@@ -31,7 +31,7 @@ class Desktop extends Component {
         let modal_window = "";
         if(this.props.adding_form && this.props.adding_form.status){
             if(this.props.adding_form.info.type === "adding_form"){
-                modal_window = <DesktopCreateIcon number={this.props.adding_form.info.value}/>
+                modal_window = <DesktopCreateIcon info={this.props.adding_form.info}/>
             }
             if(this.props.adding_form.info.type === "editing_form"){
                 modal_window = <DesktopEditIcon item={this.props.adding_form.info.value}/>
@@ -41,7 +41,7 @@ class Desktop extends Component {
             <div onClick={this.onClick} className="Desktop">
                 {modal_window}
                 {Array.from(Array(20).keys()).map((column) => {
-                    return (<DesktopColumn desktop={this.props.desktop} key={column+"column"} column={column}/>);
+                    return (<DesktopColumn dir_id="0" desktop={this.props.desktop} key={column+"column"} column={column}/>);
                 })}
             </div>
         );

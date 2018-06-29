@@ -15,8 +15,8 @@ export const updateIconNumber= (user_id, icon_id, new_number) => async dispatch 
     dispatch({type: types.FETCH_DESKTOP, payload: res.data});
 };
 
-export const createIcon = (user_id, icon, number) => async dispatch => {
-    const res = await axios.post('/desktop/icon/add?user_id='+user_id + '&icon='+icon+'&number='+number);
+export const createIcon = (user_id, icon, number, dir_id, icon_type) => async dispatch => {
+    const res = await axios.post('/desktop/icon/add?user_id='+user_id + '&link='+icon+'&number='+number+'&dir_id='+dir_id+'&type='+icon_type);
     dispatch({type: types.FETCH_DESKTOP, payload: res.data});
 };
 export const editIcon = (user_id, item) => async dispatch => {

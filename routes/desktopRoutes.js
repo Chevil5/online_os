@@ -33,22 +33,34 @@ module.exports = app => {
     });
 
     app.post('/desktop/icon/add', async (req,res) => {
-        let desktop = new Desktop();
+        let new_icon = {
+            userId: req.query.user_id,
+            dir_id: req.query.dir_id,
+            type: req.query.type,
+            number: req.query.number
+        };
 
-        let site_link = req.query.icon;
-        // const site_link = "https://www.google.com";
+        console.log(new_icon);
+        if(req.query.type === 1) {
+            new_icon.link = "";
+            new_icon.image = "";
+            new_icon.name = req.query.name;
+        } else {
+            let site_link = req.query.link;
+            if (site_link.toString().indexOf("https") !== 0 && site_link.toString().indexOf("http") !== 0) {
+                site_link = "https://"+site_link;
+            }
+            new_icon.link = site_link;
+            new_icon.image = site_link+"/favicon.ico";
 
-        if (site_link.toString().indexOf("https") !== 0 && site_link.toString().indexOf("http") !== 0) {
-            site_link = "https://"+site_link;
+            const site_html = await axios.get(site_link);
+            let $ = cheerio.load(site_html.data);
+            new_icon.name = $('head title').text();
         }
 
-        const site_html = await axios.get(site_link);
-        let $ = cheerio.load(site_html.data);
 
-        const site_title = $('head title').text();
-        const site_icon = site_link+"/favicon.ico";
-
-        let saved = await desktop.setIconDesktop(req.query.user_id, site_link, site_icon, site_title, req.query.number);
+        let desktop = new Desktop();
+        await desktop.setIconDesktop(new_icon);
         const users_desktop = await desktop.getUserDesktop(req.query.user_id);
         res.send(users_desktop);
 
