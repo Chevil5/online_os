@@ -40,8 +40,7 @@ module.exports = app => {
             number: req.query.number
         };
 
-        console.log(new_icon);
-        if(req.query.type === 1) {
+        if(Number(req.query.type) === 1) {
             new_icon.link = "";
             new_icon.image = "";
             new_icon.name = req.query.name;

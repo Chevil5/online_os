@@ -38,7 +38,7 @@ class DesktopRow extends Component{
     }
 
     renderDesktopItem(item){
-        return <DesktopIcon key={item.name} item={item}/>
+        return <DesktopIcon dir_id={this.props.dir_id} key={item.name} item={item}/>
     }
     render (){
         const { connectDropTarget, isOver } = this.props;

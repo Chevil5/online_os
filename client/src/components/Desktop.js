@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DesktopColumn from './DesktopColumn';
 import DesktopCreateIcon from './DesktopCreateIcon';
 import DesktopEditIcon from './DesktopEditIcon';
+import Directory from './Directory';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
 
@@ -29,6 +30,8 @@ class Desktop extends Component {
 
     render(){
         let modal_window = "";
+        let directory = "";
+
         if(this.props.adding_form && this.props.adding_form.status){
             if(this.props.adding_form.info.type === "adding_form"){
                 modal_window = <DesktopCreateIcon info={this.props.adding_form.info}/>
@@ -37,9 +40,14 @@ class Desktop extends Component {
                 modal_window = <DesktopEditIcon item={this.props.adding_form.info.value}/>
             }
         }
+
+        if(this.props.directory && this.props.directory.open_dir){
+            directory = <Directory dir_id={this.props.directory.dir_id}/>
+        }
         return (
             <div onClick={this.onClick} className="Desktop">
                 {modal_window}
+                {directory}
                 {Array.from(Array(20).keys()).map((column) => {
                     return (<DesktopColumn dir_id="0" desktop={this.props.desktop} key={column+"column"} column={column}/>);
                 })}
@@ -47,7 +55,7 @@ class Desktop extends Component {
         );
     }
 }
-function mapStateToProps({desktop, adding_form}) {
-    return {desktop, adding_form};
+function mapStateToProps({desktop, adding_form, directory}) {
+    return {desktop, adding_form, directory};
 }
 export default connect(mapStateToProps, actions)(DragDropContext(HTML5Backend)(Desktop));

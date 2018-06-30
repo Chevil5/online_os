@@ -23,7 +23,11 @@ class DesktopIcon extends Component {
         this.openLink = this.openLink.bind(this);
     }
     openLink(){
-        window.open(this.props.item.link);
+        if(Number(this.props.item.type) === 0){
+            window.open(this.props.item.link);
+        } else {
+            this.props.openDirectory({dir_id: this.props.item._id})
+        }
     }
     render(){
         const { connectDragSource, isDragging } = this.props;
@@ -32,7 +36,7 @@ class DesktopIcon extends Component {
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move'
         }}>
-            <img alt="" src={this.props.item.image}/>
+            <img alt="" src={this.props.item.image?this.props.item.image:"/images/directory.png"}/>
             <span id={this.props.item._id}>{this.props.item.name}</span>
         </div>);
     }

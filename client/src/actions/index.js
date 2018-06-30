@@ -15,8 +15,14 @@ export const updateIconNumber= (user_id, icon_id, new_number) => async dispatch 
     dispatch({type: types.FETCH_DESKTOP, payload: res.data});
 };
 
-export const createIcon = (user_id, icon, number, dir_id, icon_type) => async dispatch => {
-    const res = await axios.post('/desktop/icon/add?user_id='+user_id + '&link='+icon+'&number='+number+'&dir_id='+dir_id+'&type='+icon_type);
+export const createIcon = (user_id, data, number, dir_id, icon_type) => async dispatch => {
+    let main_data = "";
+    if(icon_type === 0){
+        main_data = '&link='+data;
+    } else {
+        main_data = '&name='+data;
+    }
+    const res = await axios.post('/desktop/icon/add?user_id='+user_id + main_data +'&number='+number+'&dir_id='+dir_id+'&type='+icon_type);
     dispatch({type: types.FETCH_DESKTOP, payload: res.data});
 };
 export const editIcon = (user_id, item) => async dispatch => {
@@ -37,5 +43,9 @@ export const showEditingForm = (status, info) => dispatch => {
 };
 export const showContextMenu = (number) => dispatch => {
     dispatch({type: types.SHOW_CONTEXT_MENU, payload: number})
+};
+
+export const openDirectory = (data) => dispatch => {
+    dispatch({type: types.OPEN_DIRECTORY, payload: data})
 };
 

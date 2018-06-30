@@ -7,7 +7,6 @@ class Desktop {
     }
 
     async setIconDesktop(new_icon){
-        console.log(new_icon);
         const DesktopModel = mongoose.model('Desktop');
         let newUserDesktop = new DesktopModel(new_icon);
         return await newUserDesktop.save();

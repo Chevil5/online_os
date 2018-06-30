@@ -14,7 +14,6 @@ class DesktopContextMenu extends Component {
     }
 
     showAddingForm(icon_type){
-        console.log(icon_type);
         this.props.showAddingForm(true, {number: this.props.number, dir_id: this.props.dir_id, icon_type: icon_type, type: 'adding_form'});
     }
 
@@ -27,9 +26,16 @@ class DesktopContextMenu extends Component {
     }
 
     renderMenuForItem(){
+        let edit_line = "";
+        if(this.props.item.type === 0){
+            edit_line = <p onClick={this.showEditingForm}>Edit icon</p>;
+        } else {
+            edit_line = <p onClick={this.showEditingForm}>Edit directory</p>;
+
+        }
         return <div className="DesktopContextMenu">
-            <p onClick={this.showEditingForm}>Edit icon</p>
-            <p onClick={this.deleteIcon}>Delete icon</p>
+            {edit_line}
+            <p onClick={this.deleteIcon}>Delete</p>
         </div>;
     };
 

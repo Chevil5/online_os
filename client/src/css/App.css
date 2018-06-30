@@ -56,3 +56,23 @@
     display: block;
     margin-bottom: 10px;
 }
+
+.DesktopIcon {
+    text-align: center;
+}
+
+.DesktopIcon img {
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+}
+
+.Directory {
+    width: 800px;
+    height: 400px;
+    position: absolute;
+    background: white;
+    top: 20%;
+    left: 20%;
+    z-index: 2;
+}
