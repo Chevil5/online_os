@@ -1,4 +1,5 @@
 export const FETCH_DESKTOP = 'fetch_desktop';
+export const FETCH_DIRECTORY = 'fetch_directory';
 export const MOVE_FROM = 'move_from';
 export const SHOW_ADDING_FORM = 'show_adding_form';
 export const SHOW_EDITING_FORM = 'show_editing_form';

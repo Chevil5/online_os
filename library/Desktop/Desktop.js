@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 class Desktop {
-    async getUserDesktop(user_id){
+    async getUserDesktop(userId, dir_id){
         const DesktopModel = mongoose.model('Desktop');
-        return await DesktopModel.find({ userId: user_id});
+        return await DesktopModel.find({$and: [{userId}, {dir_id}]});
     }
 
     async setIconDesktop(new_icon){
@@ -24,9 +24,9 @@ class Desktop {
         return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {name, link}, {new: true})
     }
 
-    async uspdateIconNumber(userId, iconId, newNumber){
+    async uspdateIconNumber(userId, iconId, newNumber, dir_id){
         const DesktopModel = mongoose.model('Desktop');
-        return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {number: newNumber}, {new: true})
+        return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {number: newNumber, dir_id}, {new: true})
     }
 }
 

@@ -11,7 +11,15 @@ import * as actions from '../actions';
 
 const rowTarget = {
     drop(props, monitor) {
-        props.updateIconNumber(1, props.icon, props.number)
+        props.updateIconNumber(1, props.icon, props.number, props.dir_id);
+
+        if(Number(props.icon.dir_id) !== Number(props.dir_id)){
+            if(Number(props.icon.dir_id) === 0){
+                props.fetchDesktop({user_id:1, dir_id:0});
+            } else {
+                props.fetchDirectory({user_id:1, dir_id: props.icon.dir_id});
+            }
+        }
     }
 
 };
@@ -33,7 +41,7 @@ class DesktopRow extends Component{
 
     //Event handlers
     onRightClick(event){
-        this.props.showContextMenu(this.props.number);
+        this.props.showContextMenu({number: this.props.number, dir_id: this.props.dir_id});
         event.preventDefault();
     }
 
@@ -43,9 +51,10 @@ class DesktopRow extends Component{
     render (){
         const { connectDropTarget, isOver } = this.props;
         let contextMenu = "";
-        if(this.props.context_menu && this.props.context_menu === this.props.number){
+        if(this.props.context_menu && this.props.context_menu.number === this.props.number && this.props.context_menu.dir_id === this.props.dir_id){
             contextMenu = <DesktopContextMenu dir_id={this.props.dir_id} number={this.props.number} item={this.props.item?this.props.item:false}/>;
         }
+
         return connectDropTarget(<div onContextMenu={event => {this.onRightClick(event)}} key={this.props.number +"row"} className="DesktopRow" id={"row"+this.props.number}>{this.props.item?this.renderDesktopItem(this.props.item):this.props.item}{isOver}{contextMenu}</div>)
     }
 }

@@ -12,8 +12,8 @@ const desktopSchema = mongoose.Schema({
     image: String,
     name: String,
     number: Number,
-    type: Number,
-    dir_id: String
+    type: { type: Number, default: 0},
+    dir_id: { type: String, default: 0}
 });
 
 mongoose.model('Desktop', desktopSchema);

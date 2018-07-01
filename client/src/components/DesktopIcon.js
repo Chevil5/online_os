@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 const iconSource = {
     beginDrag(props) {
-        props.moveIconFrom(props.item._id);
+        props.moveIconFrom(props.item);
         return {};
     }
 };
@@ -46,4 +46,3 @@ let ItemTypes = {
 };
 export default connect(null, actions)(DragSource(ItemTypes.ICON, iconSource, collect)(DesktopIcon));
 
-// export default DesktopIcon;

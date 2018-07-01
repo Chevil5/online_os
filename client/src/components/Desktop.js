@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import DesktopColumn from './DesktopColumn';
 import DesktopCreateIcon from './DesktopCreateIcon';
 import DesktopEditIcon from './DesktopEditIcon';
-import Directory from './Directory';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
-
-
-
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 
 
 
@@ -21,7 +15,7 @@ class Desktop extends Component {
     }
 
     async componentDidMount(){
-        this.props.fetchDesktop(1);
+        this.props.fetchDesktop({user_id: 1, dir_id: 0});
     }
 
     onClick(){
@@ -30,7 +24,9 @@ class Desktop extends Component {
 
     render(){
         let modal_window = "";
-        let directory = "";
+        if(typeof this.dirs_id === 'undefined'){
+            this.dirs_id = [];
+        }
 
         if(this.props.adding_form && this.props.adding_form.status){
             if(this.props.adding_form.info.type === "adding_form"){
@@ -41,13 +37,9 @@ class Desktop extends Component {
             }
         }
 
-        if(this.props.directory && this.props.directory.open_dir){
-            directory = <Directory dir_id={this.props.directory.dir_id}/>
-        }
         return (
             <div onClick={this.onClick} className="Desktop">
                 {modal_window}
-                {directory}
                 {Array.from(Array(20).keys()).map((column) => {
                     return (<DesktopColumn dir_id="0" desktop={this.props.desktop} key={column+"column"} column={column}/>);
                 })}
@@ -55,7 +47,7 @@ class Desktop extends Component {
         );
     }
 }
-function mapStateToProps({desktop, adding_form, directory}) {
-    return {desktop, adding_form, directory};
+function mapStateToProps({desktop, adding_form}) {
+    return {desktop, adding_form};
 }
-export default connect(mapStateToProps, actions)(DragDropContext(HTML5Backend)(Desktop));
+export default connect(mapStateToProps, actions)(Desktop);
