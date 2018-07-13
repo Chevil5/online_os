@@ -4,8 +4,38 @@ import DesktopCreateIcon from './DesktopCreateIcon';
 import DesktopEditIcon from './DesktopEditIcon';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
+import {findDOMNode} from "react-dom";
+import {DropTarget} from "react-dnd/lib/index";
 
+const directoryTarget = {
+    hover(props, monitor, component) {
+        let newStyle = {};
+        newStyle.left = monitor.getClientOffset().x-findDOMNode(component).getBoundingClientRect().left+'px';
+        newStyle.top = monitor.getClientOffset().y-findDOMNode(component).getBoundingClientRect().top+'px';
+        newStyle.opacity = 0;
+        newStyle.zIndex = -1;
+        newStyle.dir_id = monitor.getItem().props.dir_id;
+        props.moveDirectory(newStyle);
+        return props;
+    },
 
+    drop(props, monitor, component) {
+        let newStyle = {};
+        newStyle.left = monitor.getClientOffset().x-findDOMNode(component).getBoundingClientRect().left+'px';
+        newStyle.top = monitor.getClientOffset().y-findDOMNode(component).getBoundingClientRect().top+'px';
+        newStyle.opacity = 1;
+        newStyle.zIndex = 1;
+        console.log(newStyle);
+        props.moveDirectory(newStyle);
+        return props;
+    }
+};
+function collect(connect, monitor) {
+    return {
+        connectDropTarget: connect.dropTarget(),
+        isOver: monitor.isOver()
+    };
+}
 
 class Desktop extends Component {
 
@@ -24,6 +54,8 @@ class Desktop extends Component {
 
     render(){
         let modal_window = "";
+        const { connectDropTarget } = this.props;
+
         if(typeof this.dirs_id === 'undefined'){
             this.dirs_id = [];
         }
@@ -37,7 +69,7 @@ class Desktop extends Component {
             }
         }
 
-        return (
+        return connectDropTarget(
             <div onClick={this.onClick} className="Desktop">
                 {modal_window}
                 {Array.from(Array(20).keys()).map((column) => {
@@ -50,4 +82,5 @@ class Desktop extends Component {
 function mapStateToProps({desktop, adding_form}) {
     return {desktop, adding_form};
 }
-export default connect(mapStateToProps, actions)(Desktop);
+
+export default connect(mapStateToProps, actions)(DropTarget("directory", directoryTarget, collect)(Desktop));

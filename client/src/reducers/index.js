@@ -5,6 +5,7 @@ import iconReducer from './iconReducer';
 import addingFormReducers from './addingFormReducers';
 import directoryReducers from './directoryReducer';
 import directoryDataReducers from './directoryDataReducer';
+import directoryDnd from './directoryDnd';
 
 export default combineReducers({
     desktop: desktopReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     adding_form: addingFormReducers,
     context_menu: contextMenuReducer,
     directories: directoryReducers,
-    directory_data: directoryDataReducers
+    directory_data: directoryDataReducers,
+    directory_dnd: directoryDnd
 })

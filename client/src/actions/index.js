@@ -75,3 +75,6 @@ export const closeDirectory = (data) => dispatch => {
     dispatch({type: types.CLOSE_DIRECTORY, payload: data})
 };
 
+export const moveDirectory = (data) => dispatch => {
+    dispatch({type: types.MOVE_DIRECTORY, payload: data})
+};

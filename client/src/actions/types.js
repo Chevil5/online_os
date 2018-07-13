@@ -6,3 +6,4 @@ export const SHOW_EDITING_FORM = 'show_editing_form';
 export const SHOW_CONTEXT_MENU = 'show_context_menu';
 export const OPEN_DIRECTORY = 'open_directory';
 export const CLOSE_DIRECTORY = 'close_directory';
+export const MOVE_DIRECTORY = 'move_directory';

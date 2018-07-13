@@ -1,9 +1,22 @@
 import React, {Component} from 'react';
+import {DragSource} from "react-dnd/lib/index";
+
 import DesktopColumn from './DesktopColumn';
 
 import * as actions from '../actions';
 import {connect} from "react-redux";
 
+const directorySource = {
+    beginDrag(props, monitor, component) {
+        return {props};
+    }
+};
+function collect(connect, monitor) {
+    return {
+        connectDragSource: connect.dragSource(),
+        isDragging: monitor.isDragging()
+    }
+}
 class Directory extends Component {
 
     constructor(props){
@@ -18,7 +31,14 @@ class Directory extends Component {
         this.props.closeDirectory({dir_id: this.props.dir_id, status: 'close'});
     }
     render(){
-        return (<div className="Directory">
+        const { connectDragSource } = this.props;
+        return connectDragSource(<div className="Directory" draggable="false" style={{
+            // cursor: 'move',
+            top: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.top: "100",
+            left: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.left: "100",
+            opacity: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.opacity: 1,
+            zIndex: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.zIndex: 1,
+        }}>
             <p className="CloseDirectory" onClick={this.closeDirectory}>X</p>
             <p>{this.props.dir_id}</p>
             {Array.from(Array(5).keys()).map((column) => {
@@ -27,13 +47,24 @@ class Directory extends Component {
         </div>);
     }
 }
-function mapStateToProps({directory_data}, props) {
+function mapStateToProps({directory_data, directory_dnd}, props) {
+
+
+    let result = {};
+
     if(directory_data !== null && directory_data.length !== 0){
         if(directory_data[0].dir_id === props.dir_id){
-            return {directory_data};
+            result.directory_data = directory_data;
         }
-    } else {
-        return {};
     }
+
+    if(directory_dnd !== null){
+        console.log(directory_dnd);
+        if(directory_dnd.dir_id === props.dir_id){
+            result.directory_dnd = directory_dnd;
+        }
+    }
+
+    return result;
 }
-export default connect(mapStateToProps, actions)(Directory);
+export default connect(mapStateToProps, actions)(DragSource("directory", directorySource, collect)(Directory));
