@@ -71,4 +71,7 @@ export const showContextMenu = (data) => dispatch => {
 export const openDirectory = (data) => dispatch => {
     dispatch({type: types.OPEN_DIRECTORY, payload: data})
 };
+export const closeDirectory = (data) => dispatch => {
+    dispatch({type: types.CLOSE_DIRECTORY, payload: data})
+};
 

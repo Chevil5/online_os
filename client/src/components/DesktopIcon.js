@@ -26,7 +26,7 @@ class DesktopIcon extends Component {
         if(Number(this.props.item.type) === 0){
             window.open(this.props.item.link);
         } else {
-            this.props.openDirectory({dir_id: this.props.item._id})
+            this.props.openDirectory({dir_id: this.props.item._id, status: 'open'})
         }
     }
     render(){

@@ -11,6 +11,6 @@ export default combineReducers({
     icon: iconReducer,
     adding_form: addingFormReducers,
     context_menu: contextMenuReducer,
-    directory: directoryReducers,
+    directories: directoryReducers,
     directory_data: directoryDataReducers
 })

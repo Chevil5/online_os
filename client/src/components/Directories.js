@@ -5,19 +5,13 @@ import {connect} from 'react-redux';
 
 
 class Directories extends Component {
-    constructor(props){
-        super(props);
-        this.dirs_id = [];
-    }
 
     render() {
         let directory = [];
-        if(this.props.directory){
-            if(this.dirs_id.indexOf(this.props.directory.dir_id) === -1){
-                this.dirs_id.push(this.props.directory.dir_id);
-            }
-            for(let i = 0; i < this.dirs_id.length; i++){
-                directory.push(<Directory key={i} dir_id={this.props.directory.dir_id}/>);
+        console.log(111);
+        if(this.props.directories){
+            for(let id in this.props.directories){
+                directory.push(<Directory key={id} dir_id={this.props.directories[id].dir_id}/>);
             }
         }
 
@@ -26,7 +20,7 @@ class Directories extends Component {
     }
 }
 
-function mapStateToProps({directory}) {
-    return {directory};
+function mapStateToProps({directories}) {
+    return {directories};
 }
 export default connect(mapStateToProps, actions)(Directories);

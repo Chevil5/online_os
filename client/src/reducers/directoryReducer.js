@@ -1,10 +1,13 @@
-import {OPEN_DIRECTORY} from '../actions/types';
+import {OPEN_DIRECTORY, CLOSE_DIRECTORY} from '../actions/types';
 
-export default function (state = null, action){
+export default function (state = {}, action){
     switch (action.type) {
         case OPEN_DIRECTORY:
-            action.payload.open_dir = true;
-            return action.payload || false;
+            state[action.payload.dir_id] = action.payload;
+            return Object.assign({}, state);
+        case CLOSE_DIRECTORY:
+            delete state[action.payload.dir_id];
+            return Object.assign({}, state);
         default:
             return state;
     }
