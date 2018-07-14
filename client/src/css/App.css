@@ -67,6 +67,12 @@
     margin: 0 auto;
 }
 
+.Directories {
+    position: absolute;
+    width: 100%;
+    height: 700px;
+}
+
 .Directory {
     width: 800px;
     height: 400px;

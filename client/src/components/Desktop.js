@@ -12,8 +12,8 @@ const directoryTarget = {
         let newStyle = {};
         newStyle.left = monitor.getClientOffset().x-findDOMNode(component).getBoundingClientRect().left+'px';
         newStyle.top = monitor.getClientOffset().y-findDOMNode(component).getBoundingClientRect().top+'px';
-        newStyle.opacity = 0;
-        newStyle.zIndex = -1;
+        newStyle.opacity = 1;
+        newStyle.zIndex = 1;
         newStyle.dir_id = monitor.getItem().props.dir_id;
         props.moveDirectory(newStyle);
         return props;

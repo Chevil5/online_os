@@ -1,22 +1,11 @@
 import React, {Component} from 'react';
-import {DragSource} from "react-dnd/lib/index";
 
 import DesktopColumn from './DesktopColumn';
+import DirectoryDragableHeader from './DirectoryDragableHeader';
 
 import * as actions from '../actions';
 import {connect} from "react-redux";
 
-const directorySource = {
-    beginDrag(props, monitor, component) {
-        return {props};
-    }
-};
-function collect(connect, monitor) {
-    return {
-        connectDragSource: connect.dragSource(),
-        isDragging: monitor.isDragging()
-    }
-}
 class Directory extends Component {
 
     constructor(props){
@@ -34,14 +23,14 @@ class Directory extends Component {
         if(typeof this.props.directory_data !== 'undefined'){
             this.directory_data = this.props.directory_data;
         }
-        const { connectDragSource } = this.props;
-        return connectDragSource(<div className="Directory" draggable="false" style={{
+        return (<div className="Directory" style={{
             // cursor: 'move',
             top: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.top: "100",
             left: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.left: "100",
             opacity: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.opacity: 1,
             zIndex: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.zIndex: 1,
         }}>
+            <DirectoryDragableHeader dir_id={this.props.dir_id}/>
             <p className="CloseDirectory" onClick={this.closeDirectory}>X</p>
             <p>{this.props.dir_id}</p>
             {Array.from(Array(5).keys()).map((column) => {
@@ -69,4 +58,4 @@ function mapStateToProps({directory_data, directory_dnd}, props) {
 
     return result;
 }
-export default connect(mapStateToProps, actions)(DragSource("directory", directorySource, collect)(Directory));
+export default connect(mapStateToProps, actions)(Directory);
