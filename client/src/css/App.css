@@ -82,3 +82,17 @@
     left: 20%;
     z-index: 2;
 }
+
+
+.CloseDirectory {
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    background: red;
+    width: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {DragSource} from "react-dnd/lib/index";
 import { getEmptyImage } from "react-dnd-html5-backend";
 
+import * as actions from '../actions';
+import {connect} from "react-redux";
 
 const directorySource = {
     beginDrag(props, monitor, component) {
@@ -18,6 +20,11 @@ function collect(connect, monitor) {
 class DirectoryDragableHeader extends Component {
     constructor(props){
         super(props);
+        this.closeDirectory = this.closeDirectory.bind(this);
+    }
+
+    closeDirectory(){
+        this.props.closeDirectory({dir_id: this.props.dir_id, status: 'close'});
     }
 
     componentDidMount() {
@@ -26,7 +33,10 @@ class DirectoryDragableHeader extends Component {
 
     render(){
         const { connectDragSource } = this.props;
-        return connectDragSource(<div style={{width: "100%", height: "30px", background: "blue"}}></div>);
+        return connectDragSource(<div style={{width: "100%", height: "30px", background: "blue"}}>
+            <div>{this.props.dir_id}</div>
+            <div className="CloseDirectory" onClick={this.closeDirectory}>x</div>
+        </div>);
     }
 }
-export default DragSource("directory", directorySource, collect)(DirectoryDragableHeader);
+export default connect(null, actions)(DragSource("directory", directorySource, collect)(DirectoryDragableHeader));

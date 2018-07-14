@@ -31,8 +31,6 @@ class Directory extends Component {
             zIndex: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.zIndex: 1,
         }}>
             <DirectoryDragableHeader dir_id={this.props.dir_id}/>
-            <p className="CloseDirectory" onClick={this.closeDirectory}>X</p>
-            <p>{this.props.dir_id}</p>
             {Array.from(Array(5).keys()).map((column) => {
                 return (<DesktopColumn dir_id={this.props.dir_id} desktop={this.directory_data} key={column+"column"} column={column}/>);
             })}
