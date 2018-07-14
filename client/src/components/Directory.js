@@ -31,6 +31,9 @@ class Directory extends Component {
         this.props.closeDirectory({dir_id: this.props.dir_id, status: 'close'});
     }
     render(){
+        if(typeof this.props.directory_data !== 'undefined'){
+            this.directory_data = this.props.directory_data;
+        }
         const { connectDragSource } = this.props;
         return connectDragSource(<div className="Directory" draggable="false" style={{
             // cursor: 'move',
@@ -42,7 +45,7 @@ class Directory extends Component {
             <p className="CloseDirectory" onClick={this.closeDirectory}>X</p>
             <p>{this.props.dir_id}</p>
             {Array.from(Array(5).keys()).map((column) => {
-                return (<DesktopColumn dir_id={this.props.dir_id} desktop={this.props.directory_data} key={column+"column"} column={column}/>);
+                return (<DesktopColumn dir_id={this.props.dir_id} desktop={this.directory_data} key={column+"column"} column={column}/>);
             })}
         </div>);
     }
@@ -53,6 +56,7 @@ function mapStateToProps({directory_data, directory_dnd}, props) {
     let result = {};
 
     if(directory_data !== null && directory_data.length !== 0){
+        console.log(props);
         if(directory_data[0].dir_id === props.dir_id){
             result.directory_data = directory_data;
         }
