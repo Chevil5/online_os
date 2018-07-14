@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 class Desktop {
     async getUserDesktop(userId, dir_id){
         const DesktopModel = mongoose.model('Desktop');
-        return await DesktopModel.find({$and: [{userId}, {dir_id}]});
+        let result = {};
+        result.data = await DesktopModel.find({$and: [{userId}, {dir_id}]});
+        result.dir_id = dir_id;
+        return result;
     }
 
     async setIconDesktop(new_icon){

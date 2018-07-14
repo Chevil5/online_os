@@ -52,18 +52,16 @@ class Directory extends Component {
 }
 function mapStateToProps({directory_data, directory_dnd}, props) {
 
-
     let result = {};
 
-    if(directory_data !== null && directory_data.length !== 0){
-        console.log(props);
-        if(directory_data[0].dir_id === props.dir_id){
-            result.directory_data = directory_data;
+    if(directory_data !== null){
+        console.log(directory_data);
+        if(directory_data.dir_id === props.dir_id){
+            result.directory_data = directory_data.data;
         }
     }
 
     if(directory_dnd !== null){
-        console.log(directory_dnd);
         if(directory_dnd.dir_id === props.dir_id){
             result.directory_dnd = directory_dnd;
         }

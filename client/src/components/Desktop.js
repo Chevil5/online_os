@@ -25,7 +25,6 @@ const directoryTarget = {
         newStyle.top = monitor.getClientOffset().y-findDOMNode(component).getBoundingClientRect().top+'px';
         newStyle.opacity = 1;
         newStyle.zIndex = 1;
-        console.log(newStyle);
         props.moveDirectory(newStyle);
         return props;
     }
@@ -80,6 +79,9 @@ class Desktop extends Component {
     }
 }
 function mapStateToProps({desktop, adding_form}) {
+    if(desktop !== null){
+        desktop = desktop.data;
+    };
     return {desktop, adding_form};
 }
 
