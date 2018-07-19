@@ -21,6 +21,7 @@ class DesktopIcon extends Component {
     constructor(props) {
         super(props);
         this.openLink = this.openLink.bind(this);
+        this.state = {iconImage: null}
     }
     openLink(){
         if(Number(this.props.item.type) === 0){
@@ -36,7 +37,7 @@ class DesktopIcon extends Component {
             opacity: isDragging ? 0.5 : 1,
             cursor: 'move'
         }}>
-            <img alt="" src={this.props.item.image?this.props.item.image:"/images/directory.png"}/>
+            <img alt="Icon" onError={(el)=>{this.setState({iconImage: '/images/icon.png'})}} src={this.props.item.image?(this.state.iconImage||this.props.item.image):"/images/directory.png"}/>
             <span id={this.props.item._id}>{this.props.item.name}</span>
         </div>);
     }
