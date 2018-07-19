@@ -50,7 +50,10 @@ module.exports = app => {
                 site_link = "https://"+site_link;
             }
             new_icon.link = site_link;
-            new_icon.image = site_link+"/favicon.ico";
+            if (match = site_link.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n\?\=]+)/im)) {
+                result = match[0]
+            }
+            new_icon.image = result+"/favicon.ico";
 
             const site_html = await axios.get(site_link);
             let $ = cheerio.load(site_html.data);
