@@ -69,7 +69,7 @@ class Desktop extends Component {
         }
 
         return connectDropTarget(
-            <div onClick={this.onClick} className="Desktop">
+            <div onClick={this.onClick} className="Desktop" style={{height: window.innerHeight}}>
                 {modal_window}
                 {Array.from(Array(20).keys()).map((column) => {
                     return (<DesktopColumn dir_id="0" desktop={this.props.desktop} key={column+"column"} column={column}/>);

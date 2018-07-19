@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {findDOMNode} from 'react-dom'
 import { DropTarget } from 'react-dnd';
 import { connect } from 'react-redux';
 
@@ -10,17 +11,24 @@ import * as actions from '../actions';
 
 
 const rowTarget = {
-    drop(props, monitor) {
+    drop(props, monitor, component) {
+        findDOMNode(component).classList.remove("HoveredRow");
+
         props.updateIconNumber(1, props.icon, props.number, props.dir_id).then();
-        console.log('to '+ props.dir_id);
         if(Number(props.icon.dir_id) !== Number(props.dir_id)){
             if(Number(props.icon.dir_id) === 0){
                 props.fetchDesktop({user_id:1, dir_id:0});
             } else {
                 props.fetchDirectory({user_id:1, dir_id: props.icon.dir_id});
-                console.log('from '+ props.icon.dir_id);
             }
         }
+    },
+
+    hover(props, monitor, component){
+        for (let i = 0; i < document.getElementsByClassName("DesktopRow").length; i++){
+            document.getElementsByClassName("DesktopRow")[i].classList.remove("HoveredRow")
+        };
+        findDOMNode(component).classList.add("HoveredRow");
     }
 
 };
@@ -56,7 +64,7 @@ class DesktopRow extends Component{
             contextMenu = <DesktopContextMenu dir_id={this.props.dir_id} number={this.props.number} item={this.props.item?this.props.item:false}/>;
         }
 
-        return connectDropTarget(<div onContextMenu={event => {this.onRightClick(event)}} key={this.props.number +"row"} className="DesktopRow" id={"row"+this.props.number}>{this.props.item?this.renderDesktopItem(this.props.item):this.props.item}{isOver}{contextMenu}</div>)
+        return connectDropTarget(<div onContextMenu={event => {this.onRightClick(event)}} key={this.props.number +"row"} style={{height: window.innerHeight/7}} className="DesktopRow" id={"row"+this.props.number}>{this.props.item?this.renderDesktopItem(this.props.item):this.props.item}{isOver}{contextMenu}</div>)
     }
 }
 

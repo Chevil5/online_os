@@ -14,7 +14,7 @@
 .DesktopRow {
     width:100%;
     float:left;
-    height:90px;
+    /*height:90px;*/
     /*border: 1px solid black;*/
     position: relative;
     text-align: center;
@@ -70,7 +70,6 @@
 .Directories {
     position: absolute;
     width: 100%;
-    height: 700px;
 }
 
 .Directory {
@@ -95,4 +94,8 @@
     cursor: pointer;
     color: white;
     border-radius: 5px;
+}
+
+.HoveredRow{
+    background: #2f2f333b;
 }

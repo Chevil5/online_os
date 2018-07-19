@@ -45,7 +45,7 @@ class Directories extends Component {
             }
         }
 
-        return connectDropTarget(<div className="Directories">{directory}</div>);
+        return connectDropTarget(<div style={{height: window.innerHeight}} className="Directories">{directory}</div>);
 
     }
 }
