@@ -16,11 +16,13 @@ const rowTarget = {
 
         props.updateIconNumber(1, props.icon, props.number, props.dir_id).then();
         if(Number(props.icon.dir_id) !== Number(props.dir_id)){
-            if(Number(props.icon.dir_id) === 0){
-                props.fetchDesktop({user_id:1, dir_id:0});
-            } else {
-                props.fetchDirectory({user_id:1, dir_id: props.icon.dir_id});
-            }
+            setTimeout(() => {
+                if(Number(props.icon.dir_id) === 0){
+                    props.fetchDesktop({user_id:1, dir_id:0});
+                } else {
+                    props.fetchDirectory({user_id:1, dir_id: props.icon.dir_id});
+                }
+            }, 100)
         }
     },
 

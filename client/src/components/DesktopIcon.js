@@ -13,11 +13,17 @@ const iconSource = {
 function collect(connect, monitor) {
     return {
         connectDragSource: connect.dragSource(),
-        isDragging: monitor.isDragging()
+        isDragging: monitor.isDragging(),
+        connectDragPreview: connect.dragPreview(),
     }
 }
 
 class DesktopIcon extends Component {
+    componentDidMount() {
+        let icon = new Image();
+        icon.src = this.props.item.image;
+        this.props.connectDragPreview(icon);
+    }
     constructor(props) {
         super(props);
         this.openLink = this.openLink.bind(this);
