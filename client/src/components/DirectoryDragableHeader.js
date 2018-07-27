@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 
 const directorySource = {
     beginDrag(props, monitor, component) {
-        console.log(11);
         return {props};
     }
 };
