@@ -6,6 +6,9 @@ class Desktop {
         let result = {};
         result.data = await DesktopModel.find({$and: [{userId}, {dir_id}]});
         result.dir_id = dir_id;
+        if(dir_id !== "0"){
+            result.dir_info = await DesktopModel.find({$and: [{userId}, {_id: dir_id}]});
+        }
         return result;
     }
 

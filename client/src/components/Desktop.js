@@ -67,12 +67,12 @@ class Desktop extends Component {
                 modal_window = <DesktopEditIcon item={this.props.adding_form.info.value}/>
             }
         }
-
+        const height = window.innerHeight;
         return connectDropTarget(
-            <div onClick={this.onClick} className="Desktop" style={{height: window.innerHeight}}>
+            <div onClick={this.onClick} className="Desktop" style={{height}}>
                 {modal_window}
                 {Array.from(Array(20).keys()).map((column) => {
-                    return (<DesktopColumn dir_id="0" desktop={this.props.desktop} key={column+"column"} column={column}/>);
+                    return (<DesktopColumn dir_id="0" height={height} width="5%" desktop={this.props.desktop} key={column+"column"} column={column}/>);
                 })}
             </div>
         );

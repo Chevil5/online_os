@@ -7,7 +7,6 @@
 }
 
 .DesktopColumn {
-    width:5%;
     float:left
 }
 
@@ -27,6 +26,7 @@
     z-index: 2;
     color: black;
     padding: 10px 0px;
+    border: #2f2f333b 1px solid;
 }
 
 .DesktopContextMenu p {
@@ -56,30 +56,32 @@
 
 .DesktopIcon {
     text-align: center;
-    overflow: hidden;
     height: 100%;
 }
 
 .DesktopIcon img {
-    width: 50%;
+    width: 45%;
     padding-bottom: 8px;
     display: block;
     margin: 0 auto;
 }
 .DesktopIcon span {
-    display: contents;
+    display: block;
+    text-overflow: ellipsis;
     word-wrap: break-word;
     overflow: hidden;
+    max-height: 2em;
+    line-height: 1em;
 }
 
 .Directories {
     position: absolute;
     width: 100%;
+    overflow: hidden;
 }
 
 .Directory {
     width: 800px;
-    height: 400px;
     position: absolute;
     background: white;
     top: 20%;

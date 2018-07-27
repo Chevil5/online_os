@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 
 const directorySource = {
     beginDrag(props, monitor, component) {
+        console.log(11);
         return {props};
     }
 };
@@ -34,7 +35,7 @@ class DirectoryDragableHeader extends Component {
     render(){
         const { connectDragSource } = this.props;
         return connectDragSource(<div style={{width: "100%", height: "30px", background: "blue"}}>
-            <div>{this.props.dir_id}</div>
+            <div>{this.props.dir_info.name}</div>
             <div className="CloseDirectory" onClick={this.closeDirectory}>x</div>
         </div>);
     }
