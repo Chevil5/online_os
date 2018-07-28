@@ -79,7 +79,7 @@ class Desktop extends Component {
         if(Number(this.props.desktop) === 404){
             content = <div className="LoginForm" style={{height:height}}><form onSubmit={(e)=> {e.preventDefault(); this.login()}}>
                 <input type='text' ref="username" name="username" placeholder="Name"/>
-                <input type='text' ref="password" name="password" placeholder="Password"/>
+                <input type='password' ref="password" name="password" placeholder="Password"/>
                 <input className="login_submit" type='submit' value="Login"/>
             </form></div>
         } else {
