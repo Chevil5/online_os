@@ -45,12 +45,12 @@ class Desktop {
             } else {
                 const dir_data =  await DesktopModel.find({$and: [{userId}, {dir_id:item_target_info[0]._id}]}).sort('number');
                 if(dir_data.length === 0){
+                    console.log(11)
+
                     return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {number: 0, dir_id: item_target_info[0]._id}, {new: true})
-
                 } else {
-                    for (let i =0; i<dir_data.length;i++){
-
-                        if(Number(i) !== Number(dir_data[i].number)){
+                    for (let i=0; i<=dir_data.length;i++){
+                        if(typeof dir_data[i] === 'undefined' || Number(i) !== Number(dir_data[i].number)){
                             return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {number: i, dir_id: item_target_info[0]._id}, {new: true})
                         }
                     }

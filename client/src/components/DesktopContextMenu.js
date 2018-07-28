@@ -22,7 +22,7 @@ class DesktopContextMenu extends Component {
     }
 
     deleteIcon(){
-        this.props.deleteIcon(1, this.props.item._id, this.props.item.dir_id);
+        this.props.deleteIcon(this.props.item._id, this.props.item.dir_id);
     }
 
     renderMenuForItem(){
