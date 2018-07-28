@@ -22,7 +22,11 @@ class DesktopIcon extends Component {
     componentDidMount() {
         let icon = new Image();
         icon.src = this.props.item.image;
-        this.props.connectDragPreview(icon);
+        //https://github.com/react-dnd/react-dnd/issues/446
+        icon.onload = () => {
+            icon.width = icon.height = 30;
+            this.props.connectDragPreview(icon);
+        }
     }
     constructor(props) {
         super(props);

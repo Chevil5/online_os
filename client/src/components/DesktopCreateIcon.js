@@ -7,14 +7,21 @@ class DesktopCreateIcon extends Component {
     constructor(props) {
         super(props);
         this.createIcon = this.createIcon.bind(this);
+        this.closeAddingForm = this.closeAddingForm.bind(this);
+
     }
     createIcon(){
         this.props.createIcon(1, this.data.value, this.props.info.number,this.props.info.dir_id,this.props.info.icon_type);
         this.props.showAddingForm(false, false);
     }
 
+    closeAddingForm(){
+        this.props.showAddingForm(false, {type: 'adding_form'});
+    }
+
     renderAddIconForm (){
         return (<div className="DesktopCreateIcon">
+            <div className="CloseDirectory" onClick={this.closeAddingForm}>x</div>
             <input placeholder="Enter URL" type='text' id="desktop_create_icon" ref={input => {this.data = input;}}/>
             <button onClick={this.createIcon}>Add Icon</button>
         </div>);
@@ -22,6 +29,7 @@ class DesktopCreateIcon extends Component {
 
     renderAddDirectoryForm(){
         return (<div className="DesktopCreateIcon">
+            <div className="CloseDirectory" onClick={this.closeAddingForm}>x</div>
             <input placeholder="Enter Name" type='text' id="desktop_create_icon" ref={input => {this.data = input;}}/>
             <button onClick={this.createIcon}>Add Directory</button>
         </div>);

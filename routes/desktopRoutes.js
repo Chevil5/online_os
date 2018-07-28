@@ -9,11 +9,12 @@ module.exports = app => {
         const user_id = req.query.user_id;
         const icon_id = req.query.icon_id;
         const number = req.query.new_number;
+        const dir_id = req.query.dir_id;
 
         let desktop = new Desktop();
 
-        let updated = await desktop.uspdateIconNumber(user_id, icon_id, number, req.query.dir_id);
-        const users_desktop = await desktop.getUserDesktop(user_id, req.query.dir_id);
+        let updated = await desktop.uspdateIconNumber(user_id, icon_id, number, dir_id);
+        const users_desktop = await desktop.getUserDesktop(user_id, dir_id);
 
         res.send(users_desktop)
     });
