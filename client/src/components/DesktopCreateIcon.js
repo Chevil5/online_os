@@ -22,16 +22,21 @@ class DesktopCreateIcon extends Component {
     renderAddIconForm (){
         return (<div className="DesktopCreateIcon">
             <div className="CloseDirectory" onClick={this.closeAddingForm}>x</div>
-            <input placeholder="Enter URL" type='text' id="desktop_create_icon" ref={input => {this.data = input;}}/>
-            <button onClick={this.createIcon}>Add Icon</button>
+            <form onSubmit={this.createIcon}>
+                <input placeholder="Enter URL" type='text' id="desktop_create_icon" ref={input => {this.data = input;}}/>
+                <input className="create_submit" type="submit" value="Add Icon"/>
+
+            </form>
         </div>);
     }
 
     renderAddDirectoryForm(){
         return (<div className="DesktopCreateIcon">
             <div className="CloseDirectory" onClick={this.closeAddingForm}>x</div>
-            <input placeholder="Enter Name" type='text' id="desktop_create_icon" ref={input => {this.data = input;}}/>
-            <button onClick={this.createIcon}>Add Directory</button>
+            <form onSubmit={this.createIcon}>
+                <input placeholder="Enter Name" type='text' id="desktop_create_icon" ref={input => {this.data = input;}}/>
+                <input className="create_submit" type="submit" value="Add Directory"/>
+            </form>
         </div>);
     }
 
