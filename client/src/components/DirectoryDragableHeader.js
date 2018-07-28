@@ -33,7 +33,7 @@ class DirectoryDragableHeader extends Component {
 
     render(){
         const { connectDragSource } = this.props;
-        return connectDragSource(<div style={{width: "100%", height: "30px", background: "blue"}}>
+        return connectDragSource(<div className="DirectoryDragableHeader" style={{width: "100%", height: "30px", background: "blue"}}>
             <div>{this.props.dir_info.name}</div>
             <div className="CloseDirectory" onClick={this.closeDirectory}>x</div>
         </div>);

@@ -41,17 +41,30 @@
 
 .DesktopCreateIcon, .DesktopEditIcon {
     position: absolute;
-    top: 50%;
+    top: 38%;
     left: 42%;
     background: white;
     padding: 40px;
     text-align: center;
     z-index: 99;
+    border-radius: 5px;
+
 }
 
 .DesktopCreateIcon input, .DesktopEditIcon input {
     display: block;
     margin-bottom: 10px;
+}
+
+.DesktopCreateIcon button, .DesktopEditIcon button {
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    background: blue;
+    border: #2f2f333b 1px solid;
+    border-radius: 5px;
+    cursor:pointer;
+    text-transform: capitalize;
 }
 
 .DesktopIcon {
@@ -87,6 +100,8 @@
     top: 20%;
     left: 20%;
     z-index: 2;
+    border-radius: 5px;
+
 }
 
 
@@ -105,4 +120,8 @@
 
 .HoveredRow{
     background: #2f2f333b;
+}
+
+.DirectoryDragableHeader {
+    border-radius: 5px 5px 0 0;
 }
