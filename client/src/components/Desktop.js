@@ -9,8 +9,6 @@ import {DropTarget} from "react-dnd/lib/index";
 
 const directoryTarget = {
     hover(props, monitor, component) {
-        console.log(monitor.getClientOffset());
-        console.log(monitor.getDifferenceFromInitialOffset());
         let newStyle = {};
         newStyle.left = monitor.getSourceClientOffset().x;
         newStyle.top = monitor.getSourceClientOffset().y;
