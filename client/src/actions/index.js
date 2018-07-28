@@ -1,14 +1,14 @@
 import axios from 'axios';
 import * as types from './types';
 
-export const fetchDesktop = ({user_id, dir_id}) => async dispatch => {
-    const res = await axios.get('/desktop?userId='+user_id+'&dir_id='+dir_id);
+export const fetchDesktop = ({dir_id}) => async dispatch => {
+    const res = await axios.get('/desktop?dir_id='+dir_id);
     console.log('from desktop');
     dispatch({type: types.FETCH_DESKTOP, payload: res.data});
 };
 
-export const fetchDirectory = ({user_id, dir_id}) => async dispatch => {
-    const res = await axios.get('/desktop?userId='+user_id+'&dir_id='+dir_id);
+export const fetchDirectory = ({dir_id}) => async dispatch => {
+    const res = await axios.get('/desktop?dir_id='+dir_id);
 
     dispatch({type: types.FETCH_DIRECTORY, payload: res.data});
 };
@@ -17,8 +17,8 @@ export const moveIconFrom = (icon) => async dispatch =>{
     dispatch({type: types.MOVE_FROM, payload: icon});
 };
 
-export const updateIconNumber = (user_id, icon, new_number, icon_dir_to) => async dispatch => {
-    const res = await axios.get('/desktop/update_icon_number?user_id='+user_id + '&icon_id='+icon._id+'&new_number='+new_number+'&dir_id='+icon_dir_to);
+export const updateIconNumber = (icon, new_number, icon_dir_to) => async dispatch => {
+    const res = await axios.get('/desktop/update_icon_number?icon_id='+icon._id+'&new_number='+new_number+'&dir_id='+icon_dir_to);
 
     if(Number(icon_dir_to) === 0) {
         dispatch({type: types.FETCH_DESKTOP, payload: res.data});
@@ -27,29 +27,29 @@ export const updateIconNumber = (user_id, icon, new_number, icon_dir_to) => asyn
     }
 };
 
-export const createIcon = (user_id, data, number, dir_id, icon_type) => async dispatch => {
+export const createIcon = (data, number, dir_id, icon_type) => async dispatch => {
     let main_data = "";
     if(icon_type === 0){
-        main_data = '&link='+data;
+        main_data = 'link='+data;
     } else {
-        main_data = '&name='+data;
+        main_data = 'name='+data;
     }
-    const res = await axios.post('/desktop/icon/add?user_id='+user_id + main_data +'&number='+number+'&dir_id='+dir_id+'&type='+icon_type);
+    const res = await axios.post('/desktop/icon/add?'+main_data +'&number='+number+'&dir_id='+dir_id+'&type='+icon_type);
     if(Number(dir_id) === 0){
         dispatch({type: types.FETCH_DESKTOP, payload: res.data});
     } else {
         dispatch({type: types.FETCH_DIRECTORY, payload: res.data});
     }
 };
-export const editIcon = (user_id, item) => async dispatch => {
-    const res = await axios.post('/desktop/icon/edit?user_id='+user_id + '&id='+item._id+'&name='+item.name + '&link='+item.link+'&dir_id='+item.dir_id);
+export const editIcon = (item) => async dispatch => {
+    const res = await axios.post('/desktop/icon/edit?id='+item._id+'&name='+item.name + '&link='+item.link+'&dir_id='+item.dir_id);
     if(Number(item.dir_id) === 0){
         dispatch({type: types.FETCH_DESKTOP, payload: res.data});
     } else {
         dispatch({type: types.FETCH_DIRECTORY, payload: res.data});
     }};
-export const deleteIcon = (user_id, icon_id, dir_id) => async dispatch => {
-    const res = await axios.post('/desktop/icon/delete?user_id='+user_id + '&icon_id='+icon_id+'&dir_id='+dir_id);
+export const deleteIcon = (icon_id, dir_id) => async dispatch => {
+    const res = await axios.post('/desktop/icon/delete?icon_id='+icon_id+'&dir_id='+dir_id);
     if(Number(dir_id) === 0){
         dispatch({type: types.FETCH_DESKTOP, payload: res.data});
     } else {
@@ -77,4 +77,10 @@ export const closeDirectory = (data) => dispatch => {
 
 export const moveDirectory = (data) => dispatch => {
     dispatch({type: types.MOVE_DIRECTORY, payload: data})
+};
+
+export const login = ({username, password}) => async dispatch => {
+    let res = await axios.post('/login?username='+username+'&password='+password);
+    dispatch({type: types.FETCH_DESKTOP, payload: res.data});
+
 };

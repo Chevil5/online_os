@@ -6,7 +6,7 @@ module.exports = app => {
 
 
     app.get('/desktop/update_icon_number', async (req,res) => {
-        const user_id = req.query.user_id;
+        const user_id = req.user._id;
         const icon_id = req.query.icon_id;
         const number = req.query.new_number;
         const dir_id = req.query.dir_id;
@@ -20,7 +20,7 @@ module.exports = app => {
     });
 
     app.post('/desktop/icon/edit', async (req,res) => {
-        const user_id = req.query.user_id;
+        const user_id = req.user._id;
         const _id = req.query.id;
         const name = req.query.name;
         const link = req.query.link;
@@ -35,7 +35,7 @@ module.exports = app => {
 
     app.post('/desktop/icon/add', async (req,res) => {
         let new_icon = {
-            userId: req.query.user_id,
+            userId: req.user._id,
             dir_id: req.query.dir_id,
             type: req.query.type,
             number: req.query.number
@@ -64,7 +64,7 @@ module.exports = app => {
 
         let desktop = new Desktop();
         await desktop.setIconDesktop(new_icon);
-        const users_desktop = await desktop.getUserDesktop(req.query.user_id, req.query.dir_id);
+        const users_desktop = await desktop.getUserDesktop(req.user._id, req.query.dir_id);
         res.send(users_desktop);
 
     });
@@ -72,16 +72,20 @@ module.exports = app => {
     app.post('/desktop/icon/delete', async (req,res) => {
         let desktop = new Desktop();
 
-        let deleted = await desktop.deleteIconDesktop(req.query.user_id, req.query.icon_id);
+        let deleted = await desktop.deleteIconDesktop(req.user._id, req.query.icon_id);
 
-        const users_desktop = await desktop.getUserDesktop(req.query.user_id, req.query.dir_id);
+        const users_desktop = await desktop.getUserDesktop(req.user._id, req.query.dir_id);
         res.send(users_desktop);
     });
 
     app.get('/desktop', async (req, res) => {
-        let desktop = new Desktop();
-        const users_desktop = await desktop.getUserDesktop(req.query.userId, req.query.dir_id);
-        res.send(users_desktop);
-
+        if(typeof req.user !== 'undefined'){
+            let desktop = new Desktop();
+            const users_desktop = await desktop.getUserDesktop(req.user._id, req.query.dir_id);
+            res.send(users_desktop);
+        } else {
+            res.send({data: '404'});
+        }
     });
+
 };

@@ -13,7 +13,7 @@ class Directory extends Component {
         this.closeDirectory = this.closeDirectory.bind(this);
     }
     async componentDidMount(){
-        this.props.fetchDirectory({user_id: 1, dir_id: this.props.dir_id});
+        this.props.fetchDirectory({dir_id: this.props.dir_id});
     }
 
     closeDirectory(){

@@ -11,7 +11,7 @@ class DesktopCreateIcon extends Component {
 
     }
     createIcon(){
-        this.props.createIcon(1, this.data.value, this.props.info.number,this.props.info.dir_id,this.props.info.icon_type);
+        this.props.createIcon(this.data.value, this.props.info.number,this.props.info.dir_id,this.props.info.icon_type);
         this.props.showAddingForm(false, false);
     }
 

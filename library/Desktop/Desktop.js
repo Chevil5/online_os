@@ -34,6 +34,7 @@ class Desktop {
         const DesktopModel = mongoose.model('Desktop');
 
         const item_target_info =  await DesktopModel.find({$and: [{userId}, {dir_id}, {number: newNumber}]});
+
         if(item_target_info.length !== 0){
             if(item_target_info[0].type === 0){
                 let newUserDesktop = new DesktopModel({userId, dir_id, type: '1', number: newNumber, link:"", image:"", name: 'New dir'});
@@ -43,12 +44,15 @@ class Desktop {
                 return await DesktopModel.findOneAndUpdate({userId: userId, _id: item_target_info[0]._id}, {number: 1, dir_id: newUserDesktop._id}, {new: true})
             } else {
                 const dir_data =  await DesktopModel.find({$and: [{userId}, {dir_id:item_target_info[0]._id}]}).sort('number');
-                for (let i =0; i<dir_data.length;i++){
+                if(dir_data.length === 0){
+                    return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {number: 0, dir_id: item_target_info[0]._id}, {new: true})
 
-                    console.log(Number(i));
-                    console.log(Number(dir_data[i].number));
-                    if(Number(i) !== Number(dir_data[i].number)){
-                        return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {number: i, dir_id: item_target_info[0]._id}, {new: true})
+                } else {
+                    for (let i =0; i<dir_data.length;i++){
+
+                        if(Number(i) !== Number(dir_data[i].number)){
+                            return await DesktopModel.findOneAndUpdate({userId: userId, _id: iconId}, {number: i, dir_id: item_target_info[0]._id}, {new: true})
+                        }
                     }
                 }
             }

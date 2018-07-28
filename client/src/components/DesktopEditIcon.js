@@ -10,7 +10,7 @@ class DesktopEditIcon extends Component {
 
     }
     editIcon(){
-        this.props.editIcon(1, {name: this.name.value, link: typeof this.link !== "undefined" ? this.link.value : "", _id: this.props.item._id, dir_id: this.props.item.dir_id});
+        this.props.editIcon({name: this.name.value, link: typeof this.link !== "undefined" ? this.link.value : "", _id: this.props.item._id, dir_id: this.props.item.dir_id});
         this.props.showEditingForm(false, false);
     }
 

@@ -125,3 +125,35 @@
 .DirectoryDragableHeader {
     border-radius: 5px 5px 0 0;
 }
+
+.LoginForm {
+    width: 100%;
+    position: absolute;
+    background: #808080a6;
+}
+
+.LoginForm form {
+    width:200px;
+    position: absolute;
+    top: 40%;
+    left:40%;
+    text-align: center;
+    background: white;
+    padding: 20px 20px 0px 20px;
+    border: #2f2f333b 1px solid;
+}
+
+.LoginForm input {
+    margin-bottom: 10px;
+}
+
+.LoginForm .login_submit {
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    background: blue;
+    border: #2f2f333b 1px solid;
+    border-radius: 5px;
+    cursor:pointer;
+    text-transform: capitalize;
+}

@@ -7,7 +7,7 @@ const desktopItemSchema = mongoose.Schema({
 
 
 const desktopSchema = mongoose.Schema({
-    userId: Number,
+    userId: String,
     link: String,
     image: String,
     name: String,

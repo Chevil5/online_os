@@ -41,14 +41,19 @@ class Desktop extends Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
+        this.login= this.login.bind(this);
     }
 
     async componentDidMount(){
-        this.props.fetchDesktop({user_id: 1, dir_id: 0});
+        this.props.fetchDesktop({dir_id: 0});
     }
 
     onClick(){
         this.props.showContextMenu(false);
+    }
+
+    login() {
+        this.props.login({username: this.refs.username.value, password: this.refs.password.value});
     }
 
     render(){
@@ -67,13 +72,25 @@ class Desktop extends Component {
                 modal_window = <DesktopEditIcon item={this.props.adding_form.info.value}/>
             }
         }
+
         const height = window.innerHeight;
+
+        let content = "";
+        if(Number(this.props.desktop) === 404){
+            content = <div className="LoginForm" style={{height:height}}><form onSubmit={(e)=> {e.preventDefault(); this.login()}}>
+                <input type='text' ref="username" name="username" placeholder="Name"/>
+                <input type='text' ref="password" name="password" placeholder="Password"/>
+                <input className="login_submit" type='submit' value="Login"/>
+            </form></div>
+        } else {
+            content = Array.from(Array(20).keys()).map((column) => {
+                return (<DesktopColumn dir_id="0" height={height} width="5%" desktop={this.props.desktop} key={column+"column"} column={column}/>);
+            });
+        }
         return connectDropTarget(
             <div onClick={this.onClick} className="Desktop" style={{height}}>
                 {modal_window}
-                {Array.from(Array(20).keys()).map((column) => {
-                    return (<DesktopColumn dir_id="0" height={height} width="5%" desktop={this.props.desktop} key={column+"column"} column={column}/>);
-                })}
+                {content}
             </div>
         );
     }
