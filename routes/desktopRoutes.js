@@ -81,7 +81,8 @@ module.exports = app => {
     app.get('/desktop', async (req, res) => {
         if(typeof req.user !== 'undefined'){
             let desktop = new Desktop();
-            const users_desktop = await desktop.getUserDesktop(req.user._id, req.query.dir_id);
+            const dir_id = req.query.dir_id||"0";
+            const users_desktop = await desktop.getUserDesktop(req.user._id, dir_id);
             res.send(users_desktop);
         } else {
             res.send({data: '404'});

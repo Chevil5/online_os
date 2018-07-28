@@ -21,9 +21,9 @@ require('./models/DesktopModel');
 require('./models/UserModel');
 
 app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/' }),
+    passport.authenticate('local', { failureRedirect: '/desktop' }),
     function(req, res) {
-        res.redirect('/');
+        res.redirect('/desktop');
     });
 
 passport.use(new LocalStrategy(
