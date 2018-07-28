@@ -26,7 +26,7 @@ class DesktopEditIcon extends Component {
         return (<div className="DesktopEditIcon">
             <div className="CloseDirectory" onClick={this.closeEditForm}>x</div>
             <form onSubmit={this.editIcon}>
-                <input defaultValue={this.props.item.name} type='text' ref={input => {this.name = input;}}/>
+                <input autoFocus defaultValue={this.props.item.name} type='text' ref={input => {this.name = input;}}/>
                 {edit_line}
                 <input type="submit" value="Edit" className="create_submit"/>
             </form>
