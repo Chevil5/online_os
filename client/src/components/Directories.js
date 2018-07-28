@@ -8,8 +8,8 @@ import {findDOMNode} from "react-dom";
 const directoryTarget = {
     hover(props, monitor, component) {
         let newStyle = {};
-        newStyle.left = monitor.getClientOffset().x-findDOMNode(component).getBoundingClientRect().left+'px';
-        newStyle.top = monitor.getClientOffset().y-findDOMNode(component).getBoundingClientRect().top+'px';
+        newStyle.left = monitor.getSourceClientOffset().x;
+        newStyle.top = monitor.getSourceClientOffset().y;
         newStyle.opacity = 1;
         newStyle.zIndex = 1;
         newStyle.dir_id = monitor.getItem().props.dir_id;
@@ -19,8 +19,8 @@ const directoryTarget = {
 
     drop(props, monitor, component) {
         let newStyle = {};
-        newStyle.left = monitor.getClientOffset().x-findDOMNode(component).getBoundingClientRect().left+'px';
-        newStyle.top = monitor.getClientOffset().y-findDOMNode(component).getBoundingClientRect().top+'px';
+        newStyle.left = monitor.getSourceClientOffset().x;
+        newStyle.top = monitor.getSourceClientOffset().y;
         newStyle.opacity = 1;
         newStyle.zIndex = 1;
         props.moveDirectory(newStyle);
