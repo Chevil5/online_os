@@ -3,7 +3,6 @@ import * as types from './types';
 
 export const fetchDesktop = ({dir_id}) => async dispatch => {
     const res = await axios.get('/desktop?dir_id='+dir_id);
-    console.log('from desktop');
     dispatch({type: types.FETCH_DESKTOP, payload: res.data});
 };
 
@@ -82,5 +81,9 @@ export const moveDirectory = (data) => dispatch => {
 export const login = ({username, password}) => async dispatch => {
     let res = await axios.post('/login?username='+username+'&password='+password);
     dispatch({type: types.FETCH_DESKTOP, payload: res.data});
+};
 
+export const fetchUser = () => async dispatch => {
+    let res = await axios.post('/login/current_user');
+    dispatch({type: types.FETCH_USER, payload: res.data});
 };

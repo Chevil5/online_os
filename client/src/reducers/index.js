@@ -6,6 +6,7 @@ import addingFormReducers from './addingFormReducers';
 import directoryReducers from './directoryReducer';
 import directoryDataReducers from './directoryDataReducer';
 import directoryDnd from './directoryDnd';
+import userReducer from './userReducer';
 
 export default combineReducers({
     desktop: desktopReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
     context_menu: contextMenuReducer,
     directories: directoryReducers,
     directory_data: directoryDataReducers,
-    directory_dnd: directoryDnd
+    directory_dnd: directoryDnd,
+    user: userReducer
 })

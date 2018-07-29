@@ -26,6 +26,11 @@ app.post('/login',
         res.redirect('/desktop');
     });
 
+app.post('/login/current_user',
+    function(req, res) {
+        res.send(req.user);
+    });
+
 passport.use(new LocalStrategy(
     async function (username, password, done) {
         const User = mongoose.model('User');

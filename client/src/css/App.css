@@ -1,6 +1,5 @@
 .Desktop {
     float: left;
-    background-image: url(/images/desktop.jpg);
     background-size: cover;
     width: 100%;
     overflow: hidden;

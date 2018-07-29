@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import {connect} from 'react-redux';
 import {findDOMNode} from "react-dom";
 import {DropTarget} from "react-dnd/lib/index";
+import {fetchUser} from "../actions";
 
 const directoryTarget = {
     hover(props, monitor, component) {
@@ -41,7 +42,7 @@ class Desktop extends Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
-        this.login= this.login.bind(this);
+        this.login = this.login.bind(this);
     }
 
     async componentDidMount(){
@@ -52,11 +53,13 @@ class Desktop extends Component {
         this.props.showContextMenu(false);
     }
 
-    login() {
-        this.props.login({username: this.refs.username.value, password: this.refs.password.value});
+    async login() {
+        await this.props.login({username: this.refs.username.value, password: this.refs.password.value});
+        await this.props.fetchUser();
     }
 
     render(){
+        console.log(this.props.user);
         let modal_window = "";
         const { connectDropTarget } = this.props;
 
@@ -88,18 +91,18 @@ class Desktop extends Component {
             });
         }
         return connectDropTarget(
-            <div onClick={this.onClick} className="Desktop" style={{height}}>
+            <div onClick={this.onClick} className="Desktop" style={{height,backgroundImage: "url("+(this.props.user?this.props.user.image:'/images/desktop.jpg')+")"}}>
                 {modal_window}
                 {content}
             </div>
         );
     }
 }
-function mapStateToProps({desktop, adding_form}) {
+function mapStateToProps({desktop, adding_form, user}) {
     if(desktop !== null){
         desktop = desktop.data;
     };
-    return {desktop, adding_form};
+    return {desktop, adding_form, user};
 }
 
 export default connect(mapStateToProps, actions)(DropTarget("directory", directoryTarget, collect)(Desktop));
