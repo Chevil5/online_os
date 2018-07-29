@@ -91,11 +91,11 @@ module.exports = app => {
                 file_ext = files.myFile.name.split('.').pop(),
                 index = old_path.lastIndexOf('/') + 1,
                 file_name = old_path.substr(index);
-
+            let new_path = "";
             if (process.env.NODE_ENV === 'production') {
-                let new_path = path.join('/app/client/build/images/', file_name + '.' + file_ext);
+                new_path = path.join('/app/client/build/images/', file_name + '.' + file_ext);
             } else {
-                let new_path = path.join(process.env.PWD, '/client/public/images/', file_name + '.' + file_ext);
+                new_path = path.join(process.env.PWD, '/client/public/images/', file_name + '.' + file_ext);
             }
 
             fs.readFile(old_path, function (err, data) {
