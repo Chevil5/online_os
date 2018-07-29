@@ -22,6 +22,7 @@ class Directory extends Component {
     render(){
         if(typeof this.props.directory_data !== 'undefined'){
             this.directory_data = this.props.directory_data;
+            this.dir_info = this.props.dir_info;
         }
         const height = '400';
         return (<div className="Directory" style={{
@@ -32,7 +33,7 @@ class Directory extends Component {
             zIndex: typeof this.props.directory_dnd !== 'undefined'? this.props.directory_dnd.zIndex: 1,
             height: height+'px'
         }}>
-            <DirectoryDragableHeader dir_id={this.props.dir_id} dir_info={typeof this.props.dir_info !== 'undefined'?this.props.dir_info[0]:''}/>
+            <DirectoryDragableHeader dir_id={this.props.dir_id} dir_info={typeof this.dir_info !== 'undefined'?this.dir_info[0]:''}/>
             {Array.from(Array(10).keys()).map((column) => {
                 return (<DesktopColumn height={height} width="10%" dir_id={this.props.dir_id} desktop={this.directory_data} key={column+"column"} column={column}/>);
             })}

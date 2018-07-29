@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DesktopColumn from './DesktopColumn';
 import DesktopCreateIcon from './DesktopCreateIcon';
 import DesktopEditIcon from './DesktopEditIcon';
+import DesktopChangeBackground from './DesktopChangeBackground';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
 import {findDOMNode} from "react-dom";
@@ -59,7 +60,6 @@ class Desktop extends Component {
     }
 
     render(){
-        console.log(this.props.user);
         let modal_window = "";
         const { connectDropTarget } = this.props;
 
@@ -73,6 +73,9 @@ class Desktop extends Component {
             }
             if(this.props.adding_form.info.type === "editing_form"){
                 modal_window = <DesktopEditIcon item={this.props.adding_form.info.value}/>
+            }
+            if(this.props.adding_form.info.type === "change_background"){
+                modal_window = <DesktopChangeBackground/>
             }
         }
 
@@ -91,7 +94,7 @@ class Desktop extends Component {
             });
         }
         return connectDropTarget(
-            <div onClick={this.onClick} className="Desktop" style={{height,backgroundImage: "url("+(this.props.user?this.props.user.image:'/images/desktop.jpg')+")"}}>
+            <div onClick={this.onClick} className="Desktop" style={{height,backgroundImage: "url("+(this.props.user?'/images/'+this.props.user.image:'/images/desktop.jpg')+")"}}>
                 {modal_window}
                 {content}
             </div>

@@ -10,6 +10,7 @@ class DesktopContextMenu extends Component {
         // This binding is necessary to make `this` work in the callback
         this.showAddingForm = this.showAddingForm.bind(this);
         this.showEditingForm = this.showEditingForm.bind(this);
+        this.showChangeBackgroundForm = this.showChangeBackgroundForm.bind(this);
         this.deleteIcon = this.deleteIcon.bind(this);
     }
 
@@ -19,6 +20,10 @@ class DesktopContextMenu extends Component {
 
     showEditingForm(){
         this.props.showEditingForm(true, {value: this.props.item, type: 'editing_form'});
+    }
+
+    showChangeBackgroundForm(){
+        this.props.showChangeBackgroundForm(true, {type: 'change_background'});
     }
 
     deleteIcon(){
@@ -43,6 +48,7 @@ class DesktopContextMenu extends Component {
         return <div className="DesktopContextMenu">
             <p onClick={ () => { this.showAddingForm(0)} }>Add icon</p>
             <p onClick={ () => { this.showAddingForm(1)} }>Add directory</p>
+            <p onClick={ () => { this.showChangeBackgroundForm()} }>Change background</p>
         </div>;
     };
 

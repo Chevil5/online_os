@@ -63,6 +63,10 @@ export const showAddingForm = (status, info) => dispatch => {
 export const showEditingForm = (status, info) => dispatch => {
     dispatch({type: types.SHOW_EDITING_FORM, payload: {status, info}})
 };
+
+export const showChangeBackgroundForm = (status, info) => dispatch => {
+    dispatch({type: types.SHOW_CHANGING_BACKGROUNG_FORM, payload: {status, info}})
+};
 export const showContextMenu = (data) => dispatch => {
     dispatch({type: types.SHOW_CONTEXT_MENU, payload: data})
 };
@@ -86,4 +90,13 @@ export const login = ({username, password}) => async dispatch => {
 export const fetchUser = () => async dispatch => {
     let res = await axios.post('/login/current_user');
     dispatch({type: types.FETCH_USER, payload: res.data});
+};
+
+export const changeBackground = (image) => async dispatch => {
+    let res = await axios.post('/desktop/change_background?image='+image);
+    dispatch({type: types.FETCH_USER, payload: res.data});
+};
+export const checkBackground = (file) => async dispatch => {
+    let res = await axios.post('/desktop/check_background', file);
+    dispatch({type: types.CHECK_BACKGROUND, payload: res.data});
 };

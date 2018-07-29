@@ -27,8 +27,10 @@ app.post('/login',
     });
 
 app.post('/login/current_user',
-    function(req, res) {
-        res.send(req.user);
+    async function(req, res) {
+        const User = mongoose.model('User');
+        const user = await User.findOne({_id: req.user._id});
+        res.send(user);
     });
 
 passport.use(new LocalStrategy(

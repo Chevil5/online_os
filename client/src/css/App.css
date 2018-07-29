@@ -57,7 +57,7 @@
     margin-bottom: 10px;
 }
 
-.DesktopCreateIcon .create_submit, .DesktopEditIcon .create_submit {
+.DesktopCreateIcon .create_submit, .DesktopEditIcon .create_submit, .DesktopChangeBackground .create_submit{
     border: none;
     padding: 5px 10px;
     color: white;
@@ -158,4 +158,24 @@
     border-radius: 5px;
     cursor:pointer;
     text-transform: capitalize;
+}
+
+.DesktopChangeBackground {
+    position: absolute;
+    top: 15%;
+    left: 32%;
+    background: white;
+    padding: 40px;
+    text-align: center;
+    z-index: 99;
+    border-radius: 5px;
+    border: #2f2f333b 1px solid;
+}
+
+.DesktopChangeBackground img {
+    width: 400px;
+}
+
+.DesktopChangeBackground form div {
+    width: 100%;
 }

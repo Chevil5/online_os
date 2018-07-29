@@ -7,6 +7,7 @@ import directoryReducers from './directoryReducer';
 import directoryDataReducers from './directoryDataReducer';
 import directoryDnd from './directoryDnd';
 import userReducer from './userReducer';
+import backgroundReducer from './backgroundReducer';
 
 export default combineReducers({
     desktop: desktopReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
     directories: directoryReducers,
     directory_data: directoryDataReducers,
     directory_dnd: directoryDnd,
-    user: userReducer
+    user: userReducer,
+    background: backgroundReducer,
 })
