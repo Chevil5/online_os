@@ -91,7 +91,7 @@ module.exports = app => {
                 file_ext = files.myFile.name.split('.').pop(),
                 index = old_path.lastIndexOf('/') + 1,
                 file_name = old_path.substr(index),
-                new_path = path.join(process.env.PWD, '/client/public/images/', file_name + '.' + file_ext);
+                new_path = path.join('/client/public/images/', file_name + '.' + file_ext);
 
             fs.readFile(old_path, function (err, data) {
                 fs.writeFile(new_path, data, function (err) {
