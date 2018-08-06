@@ -29,7 +29,7 @@ app.post('/login',
 app.post('/login/current_user',
     async function(req, res) {
         const User = mongoose.model('User');
-        const user = await User.findOne({_id: req.user._id});
+        const user = await User.findOne({_id: req.user._id}).select('image').exec();
         res.send(user);
     });
 
