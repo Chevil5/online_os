@@ -94,7 +94,10 @@ class Desktop extends Component {
             });
         }
         return connectDropTarget(
-            <div onClick={this.onClick} className="Desktop" style={{height,backgroundImage: "url("+(this.props.user?'/images/'+this.props.user.image:'/images/desktop.jpg')+")"}}>
+            <div onClick={this.onClick} className="Desktop" style={{height,backgroundImage: "url("+(
+                typeof this.props.user.image !== 'undefined' || this.props.user.image !== ''?
+                    '/images/'+this.props.user.image:
+                    '/images/desktop.jpg')+")"}}>
                 {modal_window}
                 {content}
             </div>
